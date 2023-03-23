@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: "producer-app"
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+logging:
+  pattern:
+    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+
+management:
+  tracing:
+    sampling:
+      probability: 1
+

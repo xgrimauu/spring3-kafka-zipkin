@@ -1,0 +1,22 @@
+
+spring:
+  application:
+    name: "consumer-app"
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: group-id
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+server:
+  port: 8085
+
+logging:
+  pattern:
+    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+
+management:
+  tracing:
+    sampling:
+      probability: 1
